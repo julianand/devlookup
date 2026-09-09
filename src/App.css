@@ -1,0 +1,244 @@
+/* Devfinder App styles. Design tokens live here; see design/Design System.jpg. */
+
+/* 1. Colors — raw palette */
+:root {
+  --color-blue: #0079ff;
+  --color-grey: #697c9a;
+  --color-blue-grey: #4b6a9b;
+  --color-dark-navy: #2b3442;
+  --color-light-bg: #f6f8ff;
+  --color-light-card: #fefefe;
+  --color-white: #ffffff;
+  --color-dark-bg: #141d2f;
+  --color-dark-card: #1e2a47;
+}
+
+/* 2. Typography — Space Mono */
+:root {
+  --font-mono: 'Space Mono', monospace;
+
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  --fs-h1: 26px;
+  --lh-h1: 38px;
+  --fs-h2: 22px;
+  --lh-h2: 33px;
+  --fs-h3: 16px;
+  --lh-h3: 24px;
+  --fs-h4: 13px;
+  --lh-h4: 20px;
+  --fs-body: 15px;
+  --lh-body: 25px;
+}
+
+/* 3. Semantic tokens — light theme (default) */
+:root {
+  --bg: var(--color-light-bg);
+  --card-bg: var(--color-light-card);
+  --stats-bg: var(--color-light-bg);
+  --text-primary: var(--color-dark-navy);
+  --text-muted: var(--color-grey);
+  --text-username: var(--color-blue);
+  --accent: var(--color-blue);
+  --accent-text: var(--color-white);
+  --search-bg: var(--color-light-card);
+  --error: #f43535; /* "No results" red from search-bar mockups; hex not specified in Design System */
+}
+
+/* Dark theme */
+:root[data-theme='dark'] {
+  --bg: var(--color-dark-bg);
+  --card-bg: var(--color-dark-card);
+  --stats-bg: var(--color-dark-bg);
+  --text-primary: var(--color-white);
+  --text-muted: var(--color-white);
+  --text-username: var(--color-blue);
+  --accent: var(--color-blue);
+  --accent-text: var(--color-white);
+  --search-bg: var(--color-dark-card);
+}
+
+/* 4. App skeleton */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  max-width: 730px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-bold);
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  font-weight: var(--fw-bold);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.theme-toggle img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 15px;
+  background: var(--search-bg);
+  box-shadow: 0 16px 30px -10px rgba(70, 96, 187, 0.2);
+}
+
+.search-bar-icon {
+  width: 24px;
+  height: 24px;
+  margin-left: 12px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--text-primary);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-primary);
+}
+
+.search-btn {
+  padding: 13px 24px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-bold);
+}
+
+/* User card */
+.user-card {
+  padding: 32px 40px 40px;
+  border-radius: 15px;
+  background: var(--card-bg);
+  box-shadow: 0 16px 30px -10px rgba(70, 96, 187, 0.2);
+  display: flex;
+  gap: 40px;
+}
+
+.user-avatar img {
+  width: 117px;
+  height: 117px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.user-id {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.user-id h2 {
+  margin: 0;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  font-weight: var(--fw-bold);
+}
+
+.user-login {
+  margin: 0;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  color: var(--text-username);
+}
+
+.user-joined {
+  margin: 0;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  color: var(--text-muted);
+  align-self: flex-start;
+  white-space: nowrap;
+  padding-top: 9px;
+}
+
+.user-bio {
+  margin: 0 0 24px;
+  color: var(--text-muted);
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-radius: 10px;
+  background: var(--stats-bg);
+  margin-bottom: 24px;
+}
+
+.user-stats dt {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  color: var(--text-muted);
+}
+
+.user-stats dd {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-bold);
+}
+
+.user-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+  padding: 0;
+}
+
+.user-meta li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+}
+
+.user-meta img {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
