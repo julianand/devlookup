@@ -5,7 +5,7 @@ import Icon, { type IconName } from './Icon.tsx'
 it.each<[IconName, string, string, string]>([
   ['search', '0 0 25 24', '25', '24'],
   ['location', '0 0 14 20', '14', '20'],
-  ['website', '0 0 20 20', '20', '20'],
+  ['blog', '0 0 20 20', '20', '20'],
   ['twitter', '0 0 20 18', '20', '18'],
   ['company', '0 0 20 20', '20', '20'],
   ['sun', '0 0 20 20', '20', '20'],

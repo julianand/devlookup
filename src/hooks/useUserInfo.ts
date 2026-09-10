@@ -38,7 +38,8 @@ export function useUserInfo(defaultUser: string) {
     return () => ctrl.abort();
   }
 
-  useEffect(() => loadUser(defaultUser), []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- setLoading(true) must run synchronously with the fetch start; the defaultUser kick-start on mount is intentional
+  useEffect(() => loadUser(defaultUser), [defaultUser]);
 
   return {
     userInfo,
