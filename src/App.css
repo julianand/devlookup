@@ -11,6 +11,7 @@
   --color-white: #ffffff;
   --color-dark-bg: #141d2f;
   --color-dark-card: #1e2a47;
+  --color-red: #f43535;
 }
 
 /* 2. Typography — Space Mono */
@@ -44,7 +45,7 @@
   --accent-text: var(--color-white);
   --search-bg: var(--color-light-card);
   --icon-meta: var(--color-blue-grey);
-  --error: #f43535; /* "No results" red from search-bar mockups; hex not specified in Design System */
+  --error: var(--color-red);
 }
 
 /* Dark theme */
@@ -107,8 +108,8 @@
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px;
+  gap: 24px;
+  padding: 12px;
   border-radius: 15px;
   background: var(--search-bg);
   box-shadow: 0 16px 30px -10px rgba(70, 96, 187, 0.2);
@@ -136,6 +137,10 @@
   color: var(--text-primary);
 }
 
+.search-no-results {
+  color: var(--error);
+}
+
 .search-btn {
   padding: 13px 24px;
   border: 0;
@@ -145,6 +150,11 @@
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   font-weight: var(--fw-bold);
+}
+
+.search-btn.disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 /* User card */
