@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Icon from './Icon.tsx'
 
-export function ThemeButton() {
+function ThemeButton() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
   const text = theme === 'light' ? 'Dark' : 'Light'
   const icon = theme === 'light' ? 'moon' : 'sun'
@@ -21,3 +21,5 @@ export function ThemeButton() {
     </button>
   )
 }
+
+export default ThemeButton

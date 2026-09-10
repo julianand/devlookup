@@ -1,6 +1,6 @@
 import Icon, { type IconName } from './Icon.tsx'
 
-interface GitHubUser {
+export interface GitHubUser {
   avatar: string
   name: string
   username: string

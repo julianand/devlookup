@@ -1,7 +1,7 @@
 import SearchBar from "./components/SearchBar.tsx";
 import UserDescription from "./components/UserDescription.tsx";
 import "./App.css";
-import { ThemeButton } from "./components/ThemeButton.tsx";
+import ThemeButton from "./components/ThemeButton.tsx";
 
 const dummyUser = {
   avatar: "https://avatars.githubusercontent.com/octocat?v=4",
