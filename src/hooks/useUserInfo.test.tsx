@@ -1,29 +1,7 @@
 import { act, renderHook, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+import { octocatUser, responseWith } from '../test/github-user.fixture.ts'
 import { useUserInfo } from './useUserInfo.ts'
-
-const fakeApiUser = {
-  avatar: 'https://avatars.githubusercontent.com/octocat?v=4',
-  name: 'The Octocat',
-  login: 'octocat',
-  created_at: '2011-01-25T18:44:36Z',
-  bio: null,
-  public_repos: 8,
-  followers: 3938,
-  following: 9,
-  location: 'San Francisco',
-  blog: 'https://github.blog',
-  twitter_username: null,
-  company: '@github',
-}
-
-function responseWith(payload: object | null, ok = true, status = 200) {
-  return {
-    ok,
-    status,
-    json: () => Promise.resolve(payload),
-  }
-}
 
 let fetchMock: ReturnType<typeof vi.fn>
 
@@ -37,7 +15,7 @@ afterEach(() => {
 })
 
 it('fetches the default user on mount and exposes it', async () => {
-  fetchMock.mockResolvedValue(responseWith(fakeApiUser))
+  fetchMock.mockResolvedValue(responseWith(octocatUser))
 
   const { result } = renderHook(() => useUserInfo('octocat'))
 
@@ -50,12 +28,12 @@ it('fetches the default user on mount and exposes it', async () => {
   await waitFor(() => {
     expect(result.current.loading).toBe(false)
   })
-  expect(result.current.userInfo).toEqual(fakeApiUser)
+  expect(result.current.userInfo).toEqual(octocatUser)
   expect(result.current.searchError).toBe(false)
 })
 
 it('fetches the requested username on loadUser', async () => {
-  fetchMock.mockResolvedValue(responseWith(fakeApiUser))
+  fetchMock.mockResolvedValue(responseWith(octocatUser))
 
   const { result } = renderHook(() => useUserInfo('octocat'))
   await waitFor(() => {
@@ -74,7 +52,7 @@ it('fetches the requested username on loadUser', async () => {
 
 it('sets searchError on a 404 without updating userInfo', async () => {
   fetchMock
-    .mockResolvedValueOnce(responseWith(fakeApiUser))
+    .mockResolvedValueOnce(responseWith(octocatUser))
     .mockResolvedValueOnce(responseWith({ message: 'Not Found' }, false, 404))
 
   const { result } = renderHook(() => useUserInfo('octocat'))
@@ -89,7 +67,7 @@ it('sets searchError on a 404 without updating userInfo', async () => {
     expect(result.current.searchError).toBe(true)
   })
 
-  expect(result.current.userInfo).toEqual(fakeApiUser)
+  expect(result.current.userInfo).toEqual(octocatUser)
 })
 
 it('aborts the previous fetch when a new search starts', async () => {
@@ -110,7 +88,7 @@ it('aborts the previous fetch when a new search starts', async () => {
       },
     )
     // loadUser('second'): resolves with the user
-    .mockResolvedValueOnce(responseWith(fakeApiUser))
+    .mockResolvedValueOnce(responseWith(octocatUser))
 
   const { result } = renderHook(() => useUserInfo('octocat'))
 
@@ -125,7 +103,7 @@ it('aborts the previous fetch when a new search starts', async () => {
   })
 
   expect(abortedSignals[0].aborted).toBe(true)
-  expect(result.current.userInfo).toEqual(fakeApiUser)
+  expect(result.current.userInfo).toEqual(octocatUser)
   expect(result.current.searchError).toBe(false)
 })
 

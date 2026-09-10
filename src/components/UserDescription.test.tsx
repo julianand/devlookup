@@ -1,25 +1,10 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { beforeEach, expect, it } from 'vitest'
-import type { GithubUser } from '../interfaces/github-user.interface.ts'
+import { octocatUser } from '../test/github-user.fixture.ts'
 import UserDescription from './UserDescription.tsx'
 
-const baseUser: GithubUser = {
-  avatar_url: 'https://avatars.githubusercontent.com/octocat?v=4',
-  created_at: '2011-01-25T18:01:06Z',
-  login: 'octocat',
-  name: 'The Octocat',
-  bio: 'learned to code by watching the octocat',
-  public_repos: 8,
-  followers: 3938,
-  following: 9,
-  location: 'San Francisco',
-  blog: 'https://github.blog',
-  twitter_username: 'mona',
-  company: '@github',
-}
-
-function renderUser(overrides: Partial<GithubUser> = {}) {
-  return render(<UserDescription user={{ ...baseUser, ...overrides }} />)
+function renderUser(overrides: Partial<typeof octocatUser> = {}) {
+  return render(<UserDescription user={{ ...octocatUser, ...overrides }} />)
 }
 
 beforeEach(() => {
@@ -34,7 +19,7 @@ it('renders the always-present identity fields', () => {
   expect(screen.getByText(/Joined 25 Jan 2011/)).toBeTruthy()
 
   const avatar = screen.getByRole('img')
-  expect(avatar.getAttribute('src')).toContain(baseUser.avatar_url)
+  expect(avatar.getAttribute('src')).toContain(octocatUser.avatar_url)
   expect(avatar.getAttribute('alt')).toBe('The Octocat')
 })
 
