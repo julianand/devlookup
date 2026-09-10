@@ -4,23 +4,8 @@ import "./App.css";
 import ThemeButton from "./components/ThemeButton.tsx";
 import { useUserInfo } from "./hooks/useUserInfo.ts";
 
-const dummyUser = {
-  avatar: "https://avatars.githubusercontent.com/octocat?v=4",
-  name: "The Octocat",
-  username: "octocat",
-  joinedDate: "25 Jan 2011",
-  bio: null,
-  repos: 8,
-  followers: 3938,
-  following: 9,
-  location: "San Francisco",
-  website: "https://github.blog",
-  twitter: null,
-  company: "@github",
-};
-
 function App() {
-  const { loading, searchError, clearSearchError, loadUser } = useUserInfo("octocat");
+  const { userInfo, loading, searchError, clearSearchError, loadUser } = useUserInfo("octocat");
 
   return (
     <div className="app">
@@ -34,7 +19,7 @@ function App() {
         loading={loading}
         searchError={searchError}
       />
-      <UserDescription user={dummyUser} />
+      <UserDescription user={userInfo} />
     </div>
   );
 }

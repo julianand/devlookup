@@ -1,69 +1,78 @@
-import Icon, { type IconName } from './Icon.tsx'
+import type { GithubUser } from "../interfaces/github-user.interface.ts";
+import Icon, { type IconName } from "./Icon.tsx";
 
-export interface GitHubUser {
-  avatar: string
-  name: string
-  username: string
-  joinedDate: string
-  bio: string | null
-  repos: number
-  followers: number
-  following: number
-  location: string | null
-  website: string | null
-  twitter: string | null
-  company: string | null
-}
+const linkProps = (metaItem: { icon: IconName; text?: string; href?: string }) => {
+  if (!metaItem.href) return;
 
-function UserDescription({ user }: { user: GitHubUser }) {
+  let href = metaItem.href;
+  if (!href.startsWith("http")) href = "https://" + href;
+
+  return { href, target: "_blank", rel: "noreferrer noopener" };
+};
+
+const getCreatedDateFormatted = (dateISO: string) => {
+  // Use native locale formatter to format date
+  const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+  // Format date in en-GB (Day Month Year)
+  return dateFormatter.format(new Date(dateISO));
+};
+
+function UserDescription({ user }: { user: GithubUser | undefined }) {
+  if (!user) return <div className="user-card"></div>;
+
   const stats = [
-    { label: 'Repos', value: user.repos },
-    { label: 'Followers', value: user.followers },
-    { label: 'Following', value: user.following },
-  ]
+    { label: "Repos", value: user.public_repos },
+    { label: "Followers", value: user.followers },
+    { label: "Following", value: user.following },
+  ];
 
-  const meta: { icon: IconName; text: string; unavailable: boolean; href: string | null }[] = [
+  const meta: { icon: IconName; text?: string; href?: string }[] = [
     {
-      icon: 'location',
-      text: user.location ?? 'Not Available',
-      unavailable: user.location === null,
-      href: null,
+      icon: "location",
+      text: user.location,
     },
     {
-      icon: 'website',
-      text: user.website ?? 'Not Available',
-      unavailable: user.website === null,
-      href: user.website,
+      icon: "twitter",
+      text: user.twitter_username ? `@${user.twitter_username}` : undefined,
+      href: user.twitter_username ? `https://x.com/${user.twitter_username}` : undefined,
     },
     {
-      icon: 'twitter',
-      text: user.twitter ?? 'Not Available',
-      unavailable: user.twitter === null,
-      href: user.twitter,
+      icon: "blog",
+      text: user.blog,
+      href: user.blog,
     },
     {
-      icon: 'company',
-      text: user.company ?? 'Not Available',
-      unavailable: user.company === null,
-      href: user.company,
+      icon: "company",
+      text: user.company,
+      href: (user.company ?? "").startsWith("@")
+        ? `https://github.com/${user.company?.substring(1)}`
+        : undefined,
     },
-  ]
+  ];
 
   return (
     <div className="user-card">
       <div className="user-avatar">
-        <img src={user.avatar} alt={user.name} />
+        <img src={user.avatar_url} alt={user.name ?? user.login} />
       </div>
       <div className="user-info">
         <div className="user-id">
           <div>
-            <h2>{user.name}</h2>
-            <p className="user-login">@{user.username}</p>
+            <h1>{user.name ?? user.login}</h1>
+            <h3 className="user-login">@{user.login}</h3>
           </div>
-          <p className="user-joined">Joined {user.joinedDate}</p>
+          <p className="user-joined">Joined {getCreatedDateFormatted(user.created_at)}</p>
         </div>
 
-        <p className="user-bio">{user.bio ?? 'This profile has no bio'}</p>
+        <p className={`user-bio ${!user.bio ? "unavailable" : ""}`}>
+          {user.bio ?? "This profile has no bio"}
+        </p>
 
         <dl className="user-stats">
           {stats.map((stat) => (
@@ -76,19 +85,15 @@ function UserDescription({ user }: { user: GitHubUser }) {
 
         <ul className="user-meta">
           {meta.map((item) => (
-            <li key={item.icon} className={item.unavailable ? 'unavailable' : undefined}>
+            <li key={item.icon} className={!item.text ? "unavailable" : undefined}>
               <Icon name={item.icon} />
-              {item.unavailable ? (
-                <span>{item.text}</span>
-              ) : (
-                <a href={item.href ?? '#'}>{item.text}</a>
-              )}
+              {!item.text ? <span>Not Available</span> : <a {...linkProps(item)}>{item.text}</a>}
             </li>
           ))}
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
-export default UserDescription
+export default UserDescription;
