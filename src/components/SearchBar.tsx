@@ -1,5 +1,5 @@
 import { type FormEvent } from 'react'
-import iconSearch from '../assets/icon-search.svg'
+import Icon from './Icon.tsx'
 
 interface SearchBarProps {
   value: string
@@ -15,7 +15,7 @@ function SearchBar({ value, onChange, onSubmit }: SearchBarProps) {
 
   return (
     <form className="search-bar" role="search" onSubmit={handleSubmit}>
-      <img className="search-bar-icon" src={iconSearch} alt="" />
+      <Icon name="search" className="search-bar-icon" />
       <input
         type="text"
         value={value}

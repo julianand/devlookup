@@ -43,6 +43,7 @@
   --accent: var(--color-blue);
   --accent-text: var(--color-white);
   --search-bg: var(--color-light-card);
+  --icon-meta: var(--color-blue-grey);
   --error: #f43535; /* "No results" red from search-bar mockups; hex not specified in Design System */
 }
 
@@ -57,6 +58,7 @@
   --accent: var(--color-blue);
   --accent-text: var(--color-white);
   --search-bg: var(--color-dark-card);
+  --icon-meta: var(--color-white);
 }
 
 /* 4. App skeleton */
@@ -97,9 +99,8 @@
   text-transform: uppercase;
 }
 
-.theme-toggle img {
-  width: 20px;
-  height: 20px;
+.theme-toggle svg {
+  flex-shrink: 0;
 }
 
 /* Search bar */
@@ -114,8 +115,6 @@
 }
 
 .search-bar-icon {
-  width: 24px;
-  height: 24px;
   margin-left: 12px;
   color: var(--accent);
   flex-shrink: 0;
@@ -235,10 +234,15 @@
   align-items: center;
   gap: 12px;
   list-style: none;
+  color: var(--icon-meta);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
 }
 
-.user-meta img {
-  width: 20px;
-  height: 20px;
+.user-meta li.unavailable {
+  opacity: 0.5;
+}
+
+.user-meta svg {
   flex-shrink: 0;
 }

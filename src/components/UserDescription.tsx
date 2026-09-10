@@ -1,7 +1,4 @@
-import iconLocation from '../assets/icon-location.svg'
-import iconWebsite from '../assets/icon-website.svg'
-import iconTwitter from '../assets/icon-twitter.svg'
-import iconCompany from '../assets/icon-company.svg'
+import Icon, { type IconName } from './Icon.tsx'
 
 interface GitHubUser {
   avatar: string
@@ -25,27 +22,27 @@ function UserDescription({ user }: { user: GitHubUser }) {
     { label: 'Following', value: user.following },
   ]
 
-  const meta = [
+  const meta: { icon: IconName; text: string; unavailable: boolean; href: string | null }[] = [
     {
-      icon: iconLocation,
+      icon: 'location',
       text: user.location ?? 'Not Available',
       unavailable: user.location === null,
       href: null,
     },
     {
-      icon: iconWebsite,
+      icon: 'website',
       text: user.website ?? 'Not Available',
       unavailable: user.website === null,
       href: user.website,
     },
     {
-      icon: iconTwitter,
+      icon: 'twitter',
       text: user.twitter ?? 'Not Available',
       unavailable: user.twitter === null,
       href: user.twitter,
     },
     {
-      icon: iconCompany,
+      icon: 'company',
       text: user.company ?? 'Not Available',
       unavailable: user.company === null,
       href: user.company,
@@ -79,8 +76,8 @@ function UserDescription({ user }: { user: GitHubUser }) {
 
         <ul className="user-meta">
           {meta.map((item) => (
-            <li key={item.icon}>
-              <img src={item.icon} alt="" />
+            <li key={item.icon} className={item.unavailable ? 'unavailable' : undefined}>
+              <Icon name={item.icon} />
               {item.unavailable ? (
                 <span>{item.text}</span>
               ) : (

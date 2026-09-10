@@ -1,25 +1,23 @@
-import { useEffect, useState } from "react";
-import iconSun from "../assets/icon-sun.svg";
-import iconMoon from "../assets/icon-moon.svg";
+import { useEffect, useState } from 'react'
+import Icon from './Icon.tsx'
 
 export function ThemeButton() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
-  const text = theme === "light" ? "Dark" : "Light";
-  const icon = theme === "light" ? iconMoon : iconSun;
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const text = theme === 'light' ? 'Dark' : 'Light'
+  const icon = theme === 'light' ? 'moon' : 'sun'
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
 
-  const switchTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-  };
+  function switchTheme() {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
 
   return (
-    <button className="theme-toggle" type="button" onClick={() => switchTheme()}>
+    <button className="theme-toggle" type="button" onClick={switchTheme}>
       {text}
-      <img src={icon} alt="" />
+      <Icon name={icon} />
     </button>
-  );
+  )
 }
