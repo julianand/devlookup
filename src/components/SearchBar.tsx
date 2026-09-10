@@ -20,9 +20,8 @@ function SearchBar(props: SearchBarProps) {
     onSubmit(search);
   }
 
-  function handleInput(event: InputEvent) {
-    const input = event.target as HTMLInputElement;
-    onInput(input.value);
+  function handleInput(event: InputEvent<HTMLInputElement>) {
+    onInput(event.currentTarget.value);
   }
 
   return (
@@ -36,7 +35,11 @@ function SearchBar(props: SearchBarProps) {
         aria-label="Search GitHub username"
       />
       {searchError && <span className="search-no-results">No results</span>}
-      <button className={`search-btn ${buttonDisabled ? 'disabled' : ''}`} type="submit">
+      <button
+        className={`search-btn ${buttonDisabled ? 'disabled' : ''}`}
+        disabled={buttonDisabled}
+        type="submit"
+      >
         Search
       </button>
     </form>
