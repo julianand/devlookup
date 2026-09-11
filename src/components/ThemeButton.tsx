@@ -3,7 +3,9 @@ import Icon from './Icon.tsx'
 import './ThemeButton.css'
 
 function ThemeButton() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+  const [theme, setTheme] = useState<'light' | 'dark'>(() =>
+    (window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ?? false) ? 'dark' : 'light',
+  )
   const text = theme === 'light' ? 'Dark' : 'Light'
   const icon = theme === 'light' ? 'moon' : 'sun'
 
