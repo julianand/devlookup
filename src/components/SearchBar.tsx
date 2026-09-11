@@ -16,8 +16,9 @@ function SearchBar(props: SearchBarProps) {
   function handleSubmit(event: SubmitEvent) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const search = formData.get('search-text') as string;
+    const search = (formData.get('search-text') as string).trim();
 
+    if (!search) return;
     onSubmit(search);
   }
 

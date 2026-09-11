@@ -38,6 +38,7 @@ it('defaults to dark when the system prefers dark and toggles to light', async (
 
   await userEvent.click(button)
   expect(document.documentElement.getAttribute('data-theme')).toBe('light')
+  expect(document.activeElement).toBe(document.body)
   expect(screen.getByRole('button', { name: /dark/i })).toBeTruthy()
 })
 
@@ -50,5 +51,6 @@ it('defaults to light when the system prefers light and toggles to dark', async 
 
   await userEvent.click(button)
   expect(document.documentElement.getAttribute('data-theme')).toBe('dark')
+  expect(document.activeElement).toBe(document.body)
   expect(screen.getByRole('button', { name: /light/i })).toBeTruthy()
 })

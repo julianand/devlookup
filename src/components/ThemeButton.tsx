@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import Icon from './Icon.tsx'
 import './ThemeButton.css'
 
@@ -13,7 +13,9 @@ function ThemeButton() {
     document.documentElement.setAttribute('data-theme', theme)
   }, [theme])
 
-  function switchTheme() {
+  function switchTheme(event: MouseEvent<HTMLButtonElement>) {
+    // This blur is to fix a bug where after a click and opening/closing devtools, the theme switches.
+    event.currentTarget.blur()
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 

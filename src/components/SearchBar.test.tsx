@@ -45,6 +45,33 @@ it('submits the typed value once', async () => {
   expect(onSubmit).toHaveBeenCalledWith('octocat')
 })
 
+it('trims surrounding whitespace from the submitted value', async () => {
+  const input = renderSearchBar()
+  await userEvent.type(input, '  octocat  ')
+
+  await userEvent.click(screen.getByRole('button', { name: 'Search' }))
+
+  expect(onSubmit).toHaveBeenCalledTimes(1)
+  expect(onSubmit).toHaveBeenCalledWith('octocat')
+})
+
+it('ignores an empty submit', async () => {
+  renderSearchBar()
+
+  await userEvent.click(screen.getByRole('button', { name: 'Search' }))
+
+  expect(onSubmit).not.toHaveBeenCalled()
+})
+
+it('ignores a whitespace-only submit', async () => {
+  const input = renderSearchBar()
+  await userEvent.type(input, '   ')
+
+  await userEvent.click(screen.getByRole('button', { name: 'Search' }))
+
+  expect(onSubmit).not.toHaveBeenCalled()
+})
+
 it('shows the No results message and disables the button while searchError', () => {
   const input = renderSearchBar({ searchError: true })
   const button = screen.getByRole<HTMLButtonElement>('button', { name: 'Search' })
