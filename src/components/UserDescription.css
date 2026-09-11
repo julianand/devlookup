@@ -1,0 +1,111 @@
+/* UserDescription component styles (tokens live in App.css). */
+
+.user-card {
+  padding: 32px 40px 40px;
+  border-radius: 15px;
+  background: var(--card-bg);
+  box-shadow: 0 16px 30px -10px rgba(70, 96, 187, 0.2);
+  display: flex;
+  gap: 40px;
+  margin-top: 24px;
+  min-height: 380px;
+}
+
+.user-avatar img {
+  width: 117px;
+  height: 117px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-id {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.user-id h1 {
+  margin: 0;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  font-weight: var(--fw-bold);
+}
+
+.user-login {
+  margin: 4px 0 0 0;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  color: var(--text-username);
+  font-weight: var(--fw-regular);
+}
+
+.user-joined {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-muted);
+  align-self: flex-start;
+  white-space: nowrap;
+  padding-top: 9px;
+}
+
+.user-bio {
+  margin: 24px 0;
+  color: var(--text-muted);
+}
+
+.user-bio.unavailable {
+  opacity: 0.7;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 32px;
+  border-radius: 10px;
+  background: var(--stats-bg);
+  margin-bottom: 24px;
+}
+
+.user-stats dt {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  color: var(--text-muted);
+}
+
+.user-stats dd {
+  margin: 0;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-bold);
+}
+
+.user-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+  padding: 0;
+}
+
+.user-meta li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  color: var(--icon-meta);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+.user-meta li.unavailable {
+  opacity: 0.5;
+}
+
+.user-meta svg {
+  flex-shrink: 0;
+}

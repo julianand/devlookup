@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Icon from './Icon.tsx'
+import './ThemeButton.css'
 
 function ThemeButton() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')

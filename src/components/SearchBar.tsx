@@ -1,5 +1,6 @@
 import { type InputEvent, type SubmitEvent } from "react";
 import Icon from "./Icon.tsx";
+import "./SearchBar.css";
 
 interface SearchBarProps {
   onSubmit: (value: string) => void;

@@ -1,5 +1,6 @@
 import type { GithubUser } from "../interfaces/github-user.interface.ts";
 import Icon, { type IconName } from "./Icon.tsx";
+import "./UserDescription.css";
 
 const linkProps = (metaItem: { icon: IconName; text?: string; href?: string }) => {
   if (!metaItem.href) return;

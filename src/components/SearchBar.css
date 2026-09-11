@@ -1,0 +1,54 @@
+/* SearchBar component styles (tokens live in App.css). */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 36px;
+  padding: 12px;
+  border-radius: 15px;
+  background: var(--search-bg);
+  box-shadow: 0 16px 30px -10px rgba(70, 96, 187, 0.2);
+}
+
+.search-bar-icon {
+  margin-left: 12px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--text-primary);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+.search-bar input::placeholder {
+  color: var(--text-primary);
+}
+
+.search-no-results {
+  color: var(--error);
+}
+
+.search-btn {
+  padding: 13px 24px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-bold);
+}
+
+.search-btn.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}

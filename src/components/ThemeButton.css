@@ -1,0 +1,21 @@
+/* ThemeButton component styles (tokens live in App.css). */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  font-weight: var(--fw-bold);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.theme-toggle svg {
+  flex-shrink: 0;
+}
