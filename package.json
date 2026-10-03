@@ -1,7 +1,8 @@
 {
-  "name": "ui-engineer-sdnndh",
+  "name": "devlookup",
   "private": true,
   "version": "0.0.0",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lucide-react": "^1.51.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

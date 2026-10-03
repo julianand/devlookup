@@ -17,7 +17,7 @@ it('renders the app shell and loads the default octocat profile on mount', async
 
   render(<App />)
 
-  expect(screen.getByRole('heading', { name: 'devfinder' })).toBeTruthy()
+  expect(screen.getByRole('heading', { name: 'devlookup' })).toBeTruthy()
   expect(screen.getByRole('search')).toBeTruthy()
 
   expect(fetchMock).toHaveBeenCalledWith(
