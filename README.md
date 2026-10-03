@@ -16,9 +16,14 @@
   <img alt="ESLint" src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" />
   <img alt="lucide" src="https://img.shields.io/badge/lucide-000000?style=for-the-badge&logo=lucide&logoColor=white" />
   <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge" />
+  <img alt="Deployed on Vercel" src="https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
 </p>
 
 > 🎓 Built as my solution to the [GitHub user search app](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6) challenge on [Frontend Mentor](https://www.frontendmentor.io). The design and requirements came from the challenge; the implementation, theming, and tests are my own.
+
+## 🌐 Live Demo
+
+👉 **[devlookup-psi.vercel.app](https://devlookup-psi.vercel.app/)**
 
 ## ✨ Features
 
